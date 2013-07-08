@@ -15,6 +15,8 @@ require 'pg'
 require 'active_record'
 require 'logger'
 
+require 'twitter'
+
 require 'sinatra'
 require "sinatra/reloader" if development?
 
@@ -31,3 +33,11 @@ Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
 
 # Set up the database and models
 require APP_ROOT.join('config', 'database')
+require APP_ROOT.join('config', 'keys')
+
+Twitter.configure do |config|
+  config.consumer_key = YOUR_CONSUMER_KEY
+  config.consumer_secret = YOUR_CONSUMER_SECRET
+  config.oauth_token = YOUR_OAUTH_TOKEN
+  config.oauth_token_secret = YOUR_OAUTH_TOKEN_SECRET
+end
