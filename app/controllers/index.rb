@@ -1,17 +1,14 @@
 get '/' do
-  @status = Twitter.user_timeline('HellenKeller')
-  p @status
   erb :index
 end
 
-get '/:username' do
-  puts params[:username]
-  @user = TwitterUser.find_or_create_by_username(params[:username])
+post '/' do
+  @user = TwitterUser.find_or_create_by_username(params[:user])
 
-  if @user.tweets.empty? && @user.tweets.stale?
+  if @user.tweets.empty? && @user.tweets_stale?
     @user.fetch_tweets!
   end
-
+  sleep(5)
   @tweets = @user.tweets.limit(10)
-  erb :user_page
+  erb :_tweets, layout: false
 end

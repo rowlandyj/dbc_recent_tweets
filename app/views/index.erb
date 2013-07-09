@@ -1,10 +1,10 @@
 <div class="container">
-  <h1>Welcome to Sinatra!</h1>
-  <p>Hello, world!</p>
-  <ul>
-  <div><% @status.each do |tweet|%>
-    <li><%= tweet.text %></li>
-    <% end %>
-  <div>
-  </ul>
-  </div>
+  <h1>Enter A Twitter Name!</h1>
+  <form action='/' method='post'>
+    <input type='text' name='user' placeholder='Enter Twitter Name You Twit'>
+    <button type='submit'>FETCH MAI TWEETS!!!11</button>
+  </form>
+</div>
+
+<div id='tweets'>
+</div>
